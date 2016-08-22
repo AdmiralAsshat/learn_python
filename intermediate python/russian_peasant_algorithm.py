@@ -20,21 +20,30 @@
 ##--------------
 ## 288 + 576 = 864
 
+import time
+
 def rpa(x, y):
   total = 0
   while(x > 0):
-#  	print("debug: " + str(x) + "," + str(y))
-  	if (x % 2 == 1):
-  	  total +=y
-  	x /=2
-  	y *=2
-  print total
+  	if (x % 2 == 1):	#If left-side is odd,
+  	  total +=y			#keep right-side number
+  	x = x >> 1			#Bit-shift to divide by two
+  	y = y << 1			#Bit-shift to multiply by two
+  return total
+
+def test_rpa():
+	assert rpa(25, 48) == 1200
+	assert rpa(135, 233) == 31455
+	assert rpa(666, 999) == 665334
+	assert rpa(255, 1000) == 255000
+	print "All tests of function rpa successful."
+
+	start_time = time.time()
+	print rpa(25, 48)		#1200
+	print "Russian Algorithm took %f seconds" % (time.time() - start_time)
 
 def main():
-	rpa(25, 48)		#1200
-	rpa(135, 233)	#31455
-	rpa(666, 999)	#665334
-	rpa(255, 1000)	#255000
+	test_rpa()
 
 if __name__ == '__main__':
 	main()

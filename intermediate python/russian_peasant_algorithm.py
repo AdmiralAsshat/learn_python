@@ -22,25 +22,37 @@
 
 import time
 
+CACHE = {}
+
 def rpa(x, y):
   total = 0
-  while(x > 0):
-  	if (x % 2 == 1):	#If left-side is odd,
-  	  total +=y			#keep right-side number
-  	x = x >> 1			#Bit-shift to divide by two
-  	y = y << 1			#Bit-shift to multiply by two
+  key = (x,y)
+  if key in CACHE:
+  	total = CACHE[key]
+  else:
+  	  print 'Not in cache'
+	  while(x > 0):
+	  	if (x % 2 == 1):	#If left-side is odd,
+	  	  total +=y			#keep right-side number
+	  	x = x >> 1			#Bit-shift to divide by two
+	  	y = y << 1			#Bit-shift to multiply by two
+	  	CACHE[key] = total
   return total
 
 def test_rpa():
-	assert rpa(25, 48) == 1200
-	assert rpa(135, 233) == 31455
-	assert rpa(666, 999) == 665334
-	assert rpa(255, 1000) == 255000
-	print "All tests of function rpa successful."
+	start_time = time.time()
+	print rpa(25, 48)		#1200
+	print "Russian Algorithm took %f seconds" % (time.time() - start_time)
 
 	start_time = time.time()
 	print rpa(25, 48)		#1200
 	print "Russian Algorithm took %f seconds" % (time.time() - start_time)
+
+	# assert rpa(25, 48) == 1200
+	# assert rpa(135, 233) == 31455
+	# assert rpa(666, 999) == 665334
+	# assert rpa(255, 1000) == 255000
+	# print "All tests of function rpa successful."
 
 def main():
 	test_rpa()

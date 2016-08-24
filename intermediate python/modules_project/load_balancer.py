@@ -23,7 +23,12 @@ Architecture Include:
 ## 3)   Load Based
 
 ## Server names
-SERVERS = ['APP1', 'APP2', 'APP3']
+# SERVERS = ['APP1', 'APP2', 'APP3']
+SERVERS = ['APP1', 'APP2', 'APP3', 'APP4', 'APP5', 'APP6', 'APP7']
+
+import itertools
+## Infinite Loop Iterator
+cycle = itertools.cycle(SERVERS)
 
 def get_server():
     """
@@ -31,7 +36,8 @@ def get_server():
     No Inputs
     Output: Print the server name
     """
-    pass
+    global cycle
+    print cycle.next()
 
 ## Testing the function
 if __name__ == '__main__':

@@ -10,16 +10,20 @@ class Memcache:
         self.CACHE = {}
 
     def set(self, key, value):
-        pass
+        self.CACHE[key] = value
+        return True
 
     def get(self, key):
-        pass
+        if key in self.CACHE:
+            return self.CACHE.get(key)
+        else:
+            return None
 
     def delete(self, key):
-        pass
+        self.CACHE.pop(key)
 
     def flush(self):
-        pass
+        self.CACHE.clear()
 
 def test_memcache():
     m = Memcache()

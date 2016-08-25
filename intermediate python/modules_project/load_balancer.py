@@ -49,8 +49,11 @@ if __name__ == '__main__':
     ## simulate a number of requests with this loop
     for i in range(10):
         ##: Generate some 'Requested' numbers
-        a = randint(5,99)
-        b = randint(5,99)
+        # a = randint(5,99)
+        # b = randint(5,99)
+        z = randint(1,21)
+        a = [12,86,179,34,70,23,55][z%7]
+        b = [71,15,44,236,11,99,32][z%7]
 
         ## Run the load balancer algorithm to get us a computer
         server = get_server()

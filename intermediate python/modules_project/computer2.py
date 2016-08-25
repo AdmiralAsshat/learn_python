@@ -1,26 +1,27 @@
 import fake_database
 
-CACHE = {}
+from memcache import Memcache
+cache = Memcache()
 
 def printName():
     return str(__name__)
 
 def updateLastMultiplied(a,b,result):
     key = 'lastFive'
-    lastFiveList = CACHE.get(key)
+    lastFiveList = cache.get(key)
     if lastFiveList:
         if len(lastFiveList) >= 5:
             ## The list already had five items in it
             newList = lastFiveList[1:]
             newList.append('{}x{}={}'.format(a,b,result))
-            CACHE[key] = newList
+            done = cache.set(key, newList)
         else:
             ## The list had less than five items
             lastFiveList.append('{}x{}={}'.format(a,b,result))
-            CACHE[key] = lastFiveList
+            done = cache.set(key,lastFiveList)
     else:
         ## There was not a cache so create one
-        CACHE[key] = ['{}x{}={}'.format(a,b,result)]
+        done =cache.set(key,['{}x{}={}'.format(a,b,result)])
             
 
 def lastMultipliedHandler():
@@ -31,8 +32,9 @@ def lastMultipliedHandler():
     This is the last 5 multiplied questions/answers
     """
     key = 'lastFive'
-    if key in CACHE:
-        return "Last 5 = {}".format(CACHE[key])
+    last = cache.get(key)
+    if last:
+        return "Last 5 = {}".format(last)
     else:
         return "Russian not used before."
 
@@ -44,13 +46,14 @@ def multiplyHandler(a, b):
     Outputs: The result of those two numbers being sent thru
                 The Russuan Peasant's Algorithm.
     """
-    cacheKey = (a,b)
-    if cacheKey in CACHE:
-        return CACHE[cacheKey]
+    key = (a,b)
+    cachedAnswer = cache.get(key)
+    if cachedAnswer:
+        return cachedAnswer
     else:
         result = fake_database.rpa(a,b)
         updateLastMultiplied(a,b, result)
-        CACHE[cacheKey] = result
+        done = cache.set(key, result)
         return 'Latest Result: {}'.format(result)
         lastMultipliedHandler()
 

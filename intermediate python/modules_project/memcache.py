@@ -5,9 +5,12 @@
 ## delete(key)
 ## flush()
 
+MEMORY = {}
+
 class Memcache:
     def __init__(self):
-        self.CACHE = {}
+        global MEMORY
+        self.CACHE = MEMORY
 
     def set(self, key, value):
         self.CACHE[key] = value

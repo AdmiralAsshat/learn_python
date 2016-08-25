@@ -22,9 +22,13 @@ Architecture Include:
 ## 2)   Looping
 ## 3)   Load Based
 
+## Import Servers (modules)
+import computer1
+import computer2
+import computer3
+
 ## Server names
-# SERVERS = ['APP1', 'APP2', 'APP3']
-SERVERS = ['APP1', 'APP2', 'APP3', 'APP4', 'APP5', 'APP6', 'APP7']
+SERVERS = [computer1, computer2, computer3]
 
 import itertools
 ## Infinite Loop Iterator
@@ -37,20 +41,22 @@ def get_server():
     Output: Print the server name
     """
     global cycle
-    print cycle.next()
+    return cycle.next()
 
 ## Testing the function
 if __name__ == '__main__':
-    for i in range(8):
-        get_server()
+    from random import randint
+    ## simulate a number of requests with this loop
+    for i in range(10):
+        ##: Generate some 'Requested' numbers
+        a = randint(5,99)
+        b = randint(5,99)
 
-## APP1
-## APP2
-## APP3
-## APP1
-## APP2
-## APP3
-## APP1
-## APP2
-## APP3
-        
+        ## Run the load balancer algorithm to get us a computer
+        server = get_server()
+
+        ## Print the results
+        print server.printName()
+        print server.multiplyHandler(a,b)
+        print server.lastMultipliedHandler()
+        print " "

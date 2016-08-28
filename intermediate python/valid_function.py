@@ -7,6 +7,13 @@
 
 import re
 
+def solve(rawFormula):
+    """
+    Test all possible translations between Character string and Numbered string
+    Return the Solution to the puzzle or None if no solution is found.
+    """
+    pass
+
 def valid(formula):
     """
     Formula is valid only if it has no leading zero on any of its numbers

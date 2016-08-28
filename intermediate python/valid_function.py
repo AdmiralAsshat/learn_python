@@ -9,10 +9,14 @@ import re
 
 def solve(rawFormula):
     """
+    rawFormula = "SEND + MORE = MONEY"
     Test all possible translations between Character string and Numbered string
     Return the Solution to the puzzle or None if no solution is found.
     """
-    pass
+    for formula in fill_in(rawFormula):
+        if valid(formula):
+            return formula
+    return None
 
 def valid(formula):
     """

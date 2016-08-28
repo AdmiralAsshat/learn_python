@@ -5,17 +5,34 @@
 #    - fill_in --> Create a new formula replacing letters with numbers
 #    - valid   --> Tests our filled-in string
 
-import ??
+import re
 
 def valid(formula):
     """
-    Formula is valid only if it has no leading zero on any of it's numbers
+    Formula is valid only if it has no leading zero on any of its numbers
     and the formula evaluates as True.
     Returns True or False
     """
     try:
-        ## your code here
+        # Is there a zero at beginning of formula?
+        return not re.search(r'\b0[0-9]', formula) \
+        and (eval(formula)) #Is the formula true?
     except ArithmeticError:
-        ## your code here
+        return False
     except:
-        ## your code here
+        return False
+
+def test_valid():
+    f='2+2==4'
+    print("Formula: %s - %s" % (f, valid(f)))
+    f='320+640==100'
+    print("Formula: %s - %s" % (f, valid(f)))
+    f='2-2==0'
+    print("Formula: %s - %s" % (f, valid(f)))
+    f='16*16==256'
+    print("Formula: %s - %s" % (f, valid(f)))
+    f='034+168==202'
+    print("Formula: %s - %s" % (f, valid(f)))
+
+if __name__ == '__main__':
+    test_valid()

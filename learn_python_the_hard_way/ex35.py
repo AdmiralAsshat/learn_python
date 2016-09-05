@@ -28,7 +28,7 @@ def bear_room():
 		if next == "take honey":
 			dead("The bear looks at you and then slaps your face off.")
 		elif next == "taunt bear" and not bear_moved:
-			print "The bear has moved from the door. You can go through it now"
+			print "The bear has moved from the door. You can go through it now."
 			bear_moved = True
 		elif next == "taunt bear" and bear_moved:
 			dead("The bear gets pissed off and chews your leg off.")

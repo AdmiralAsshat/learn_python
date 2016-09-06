@@ -50,7 +50,7 @@ rover = Dog("Rover")
 satan = Cat("Satan")
 
 ## Mary is-a person
-mary = person("Mary")
+mary = Person("Mary")
 
 ## Mary's pet is Satan
 mary.pet = satan

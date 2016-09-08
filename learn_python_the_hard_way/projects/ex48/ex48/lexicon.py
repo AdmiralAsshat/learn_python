@@ -17,7 +17,8 @@ def scan(input):
 	DIRECTIONS = ['north', 'south', 'east', 'west']
 	NOUNS = ['bear', 'princess', 'IAS', 'chicken', 'Satan']
 	VERBS = ['go', 'eat', 'kill', 'punch', 'defenestrate']
-	PREPOSITIONS = ['at', 'in', 'of', 'from']
+	PREPOSITIONS = ['at', 'in', 'of', 'from', 'behind', 'front',
+					'over', 'under', 'near', 'a', 'and', 'the']
 
 	## Loop through words
 	for word in words:
@@ -34,6 +35,6 @@ def scan(input):
 			sentence.append(('number', int(word)))
 		else:
 			sentence.append(('error', word))
-			
+
 	## Return a "sentence" (list of tuples) of word type and word
 	return sentence

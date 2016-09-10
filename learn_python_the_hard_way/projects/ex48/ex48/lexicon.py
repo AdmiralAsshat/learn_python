@@ -17,7 +17,7 @@ def scan(input):
 	DIRECTIONS = ['north', 'south', 'east', 'west']
 	NOUNS = ['bear', 'princess', 'IAS', 'chicken', 'Satan']
 	VERBS = ['go', 'eat', 'kill', 'punch', 'defenestrate']
-	PREPOSITIONS = ['at', 'in', 'of', 'from', 'behind', 'front',
+	STOPPERS = ['at', 'in', 'of', 'from', 'behind', 'front',
 					'over', 'under', 'near', 'a', 'and', 'the']
 
 	## Loop through words
@@ -29,8 +29,8 @@ def scan(input):
 			sentence.append(('noun', word))
 		elif word in VERBS:
 			sentence.append(('verb', word))
-		elif word in PREPOSITIONS:
-			sentence.append(('preposition', word))
+		elif word in STOPPERS:
+			sentence.append(('stop', word))
 		elif word.isdigit():
 			sentence.append(('number', int(word)))
 		else:

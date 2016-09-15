@@ -71,7 +71,7 @@ def parse_sentence(word_list):
 
 	if start == 'noun':
 		subj = match(word_list, 'noun')
-		return parse_object(word_list, subj)
+		return parse_subject(word_list, subj)
 	elif start == 'verb':
 		# assume the subject is the player then
 		return parse_subject(word_list, ('noun', 'player'))

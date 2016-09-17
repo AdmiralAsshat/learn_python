@@ -8,7 +8,7 @@ app = web.application(urls, globals())
 
 render = web.template.render('templates/', base="layout")
 
-class Index:
+class Index(object):
 	def GET(self):
 		return render.hello_form()
 
@@ -17,5 +17,5 @@ class Index:
 		greeting = "%s, %s" % (form.greet, form.name)
 		return render.index(greeting = greeting)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 	app.run()

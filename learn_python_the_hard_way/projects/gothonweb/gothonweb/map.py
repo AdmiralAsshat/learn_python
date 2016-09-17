@@ -109,19 +109,46 @@ escape_pod.add_paths({
 
 generic_death = Room("death", "You died.")
 
+bridge_bomb_death = Room("death",
+	"""
+	Throwing the bomb sufficently agitates it into releasing its destructive payload.
+	There were no survivors.
+	""")
+
 the_bridge.add_paths({
-	'throw the bomb': generic_death,
+	'throw the bomb': bridge_bomb_death,
 	'slowly place the bomb': escape_pod
 	})
 
+armory_death = Room("death",
+	"""
+	The bomb has been locked away forever, depriving you of your only means of escape.
+	Your death at the hands of the Gothons is slow an agonizing.
+	""")
+
 laser_weapon_armory.add_paths({
 	'0132': the_bridge,
-	'*': generic_death
+	'*': armory_death
 	})
 
+corridor_shoot_death = Room("death",
+	"""
+	In your panic to shoot quickly, you fire and miss. The Gothon does not.
+	"""
+	)
+
+corridor_dodge_death = Room("death",
+	"""
+	The room is too narrow to dodge effectively. You roll with the speed and grace of an action hero,
+	right into the nearest wall. The Gothon aims carefully at your dazed body, sprawled across the floor,
+	and fires. The sensation of flesh burning away to reveal your now unprotected organs
+	is at once titillating and excruciating.
+	"""
+	)
+
 central_corridor.add_paths({
-	'shoot!': generic_death,
-	'dodge!': generic_death,
+	'shoot!': corridor_shoot_death,
+	'dodge!': corridor_dodge_death,
 	'tell a joke': laser_weapon_armory
 	})
 

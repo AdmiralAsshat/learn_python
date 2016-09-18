@@ -36,3 +36,15 @@ def test_gothon_game_map():
 
 	room = START.go('tell a joke')
 	assert_equal(room, laser_weapon_armory)
+	assert_equal(room.go('*'), armory_death)
+
+	room = room.go('0132')
+	assert_equal(room, the_bridge)
+	assert_equal(room.go('throw the bomb'), bridge_bomb_death)
+
+	room = room.go('slowly place the bomb')
+	assert_equal(room, escape_pod)
+	assert_equal(room.go('*'), the_end_loser)
+
+	room = room.go('2')
+	assert_equal(room, the_end_winner)

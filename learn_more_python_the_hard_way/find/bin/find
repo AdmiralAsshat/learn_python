@@ -3,16 +3,19 @@ import sys
 import re
 import os
 
+# get the start directory
+start = sys.argv[1]
+
 # get the patterns from command-line args
-pattern = sys.argv[1]
+pattern = sys.argv[2]
 
 # convert args to regular expressions
 expr = re.compile(pattern)
 
 # traverse the directories for all files
-for root, dirs, files in os.walk('.'):
+for root, dirs, files in os.walk(start):
 	# for each file, see if pattern in filename
 	for fname in files:
 		# if pattern in filename, print it
 		if expr.search(fname):
-			print root, fname
+			print os.path.join(root,fname)

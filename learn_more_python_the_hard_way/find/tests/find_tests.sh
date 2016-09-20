@@ -1,1 +1,5 @@
-./bin/find ".*.py"
+./bin/find . ".*.py"
+echo "--------"
+./bin/find tests ".*.pyc"
+echo "--------"
+./bin/find tests "tests_*"

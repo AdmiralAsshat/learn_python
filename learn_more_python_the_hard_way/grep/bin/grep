@@ -1,0 +1,5 @@
+#!/usr/bin/env python
+from grep import utils
+import sys
+
+patterns = utils.convert_patterns(sys.argv[1:])

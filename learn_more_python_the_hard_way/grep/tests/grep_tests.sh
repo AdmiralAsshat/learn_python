@@ -1,0 +1,3 @@
+nosetests
+
+./bin/grep 'for'

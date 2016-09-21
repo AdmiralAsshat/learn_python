@@ -9,7 +9,15 @@ def test_convert_patterns():
 	assert_equal(results, [re.compile('.*.py')])
 
 def test_troll_directories():
-	pass
+	# given a directory, return all of its contents
+	results = utils.troll_directories('.')
+	# assert that we have the same contents
+	assert_true('./NOTES' in results)
 
 def test_apply_patterns():
-	pass
+	# get a list of directories
+	files = utils.troll_directories('.')
+	patterns = utils.convert_patterns(['.*.py'])
+	# apply a simple pattern on them
+	utils.apply_patterns(files, patterns)
+	# assert that we get the right results

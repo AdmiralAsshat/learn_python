@@ -29,11 +29,11 @@ def apply_patterns(files, patterns):
 	# for each file in files
 	for fname in files:
 		# open the file and read the lines
-		lines = open(fname).read()
-		for line in lines:
+		lines = open(fname).readlines()
+		for num, line in enumerate(lines):
 			# for reach pattern
 			for pattern in patterns:
 				# if pattern found in contents
 				if pattern.search(line):
 					# print file, line number, line
-					print "%s: %s" % (os.path.join(fname), line)
+					print "%s:%d: %s" % (os.path.join(fname), num+1, line),

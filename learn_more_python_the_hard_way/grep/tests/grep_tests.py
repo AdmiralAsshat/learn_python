@@ -16,8 +16,8 @@ def test_troll_directories():
 
 def test_apply_patterns():
 	# get a list of directories
-	files = utils.troll_directories('.')
-	patterns = utils.convert_patterns(['.*.py'])
+	files = utils.troll_directories('tests')
+	patterns = utils.convert_patterns(['test_'])
 	# apply a simple pattern on them
 	utils.apply_patterns(files, patterns)
 	# assert that we get the right results

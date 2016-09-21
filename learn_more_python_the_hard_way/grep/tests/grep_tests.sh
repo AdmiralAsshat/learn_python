@@ -1,3 +1,3 @@
 nosetests
 
-./bin/grep 'for'
+./bin/grep tests 'test_'

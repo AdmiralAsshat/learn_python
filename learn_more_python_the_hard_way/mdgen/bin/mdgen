@@ -1,0 +1,31 @@
+#!/usr/bin/env python
+import os
+import sys
+import markdown
+from mdgen import utils
+
+# get the source directory
+source = sys.argv[1]
+# get the target directory
+target = sys.argv[2]
+
+# get all the files in the source directory
+files = utils.troll_directories(source)
+
+# for each file
+for fname in files:
+	# strip extension of source file
+	base, ext = os.path.splitext(fname)
+	# append .html to filename
+	target_file = base + '.html'
+
+	# open the source file 
+	contents = open(fname).read()
+
+	# convert to markdown
+	html = markdown.markdown(contents)
+
+	# open output with .html
+	with open(target_file, 'w') as f:
+
+	# write html to .html

@@ -1,0 +1,2 @@
+
+./bin/mdgen docs html

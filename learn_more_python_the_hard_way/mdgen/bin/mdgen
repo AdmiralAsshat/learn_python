@@ -16,8 +16,14 @@ files = utils.troll_directories(source)
 for fname in files:
 	# strip extension of source file
 	base, ext = os.path.splitext(fname)
+	path = base[len(source)+1:]
+	target_dir = os.path.dirname(os.path.join(target, path))
+
+	if not os.path.exists(target_dir):
+		os.makedirs(target_dir)
+
 	# append .html to filename
-	target_file = base + '.html'
+	target_file = os.path.join(target, path + ".html")
 
 	# open the source file 
 	contents = open(fname).read()
@@ -27,5 +33,5 @@ for fname in files:
 
 	# open output with .html
 	with open(target_file, 'w') as f:
-
-	# write html to .html
+		# write html to .html
+		f.write(html)

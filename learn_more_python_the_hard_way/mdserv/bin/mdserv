@@ -1,0 +1,28 @@
+#!/usr/bin/env python
+
+import os
+from flask import Flask
+from mdserv import utils
+
+app = Flask(__name__)
+app.debug = True
+
+@app.route("/")
+def index():
+    return utils.convert_markdown("index")
+
+# if they go to .html, serve that .md file
+# /stuff/index.html
+# /foo.html
+@app.route('/<doc>.html')
+def mdfile(doc):
+   return utils.convert_markdown(doc)
+
+@app.route("/<subdir>/")
+def sub_directory(subdir):
+    # get the index.md for the subdir
+    docs = os.path.join(subdir, "index")
+    return utils.convert_markdown(docs) 
+
+if __name__ == '__main__':
+    app.run()

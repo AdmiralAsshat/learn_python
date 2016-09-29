@@ -2,6 +2,7 @@
 
 import os
 from flask import Flask
+from flask import render_template
 from mdserv import utils
 
 app = Flask(__name__)
@@ -9,7 +10,11 @@ app.debug = True
 
 @app.route("/")
 def index():
-    return utils.convert_markdown("index")
+    # convert the markdown
+    html = utils.convert_markdown("index")
+    # render the template with content
+    # return to browser
+    return render_template('layout.html', body=html)
 
 # if they go to .html, serve that .md file
 # /stuff/index.html

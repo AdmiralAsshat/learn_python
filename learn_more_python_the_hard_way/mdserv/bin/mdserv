@@ -3,6 +3,7 @@
 import os
 from flask import Flask
 from flask import render_template
+from flask import request
 from mdserv import utils
 
 app = Flask(__name__)
@@ -21,13 +22,29 @@ def index():
 # /foo.html
 @app.route('/<doc>.html')
 def mdfile(doc):
-   return utils.convert_markdown(doc)
+   html = utils.convert_markdown(doc)
+   return render_template('layout.html', body=html)
 
 @app.route("/<subdir>/")
 def sub_directory(subdir):
     # get the index.md for the subdir
     docs = os.path.join(subdir, "index")
-    return utils.convert_markdown(docs) 
+    html = utils.convert_markdown(docs) 
+    return render_template('layout.html', body=html)
+
+@app.route("/edit/<doc>.html", methods=['POST', 'GET'])
+def edit(doc):
+    if request.method == 'POST':
+        # if they are posting a change
+        # write the contents to the file
+        # redirect to the new file
+        return "TEST"
+    else:
+        # load the raw md file 
+        contents = open(os.path.join("docs", doc + ".md")).read()
+        # give the edit template
+        return render_template('edit.html', doc=doc, contents=contents)
+
 
 if __name__ == '__main__':
     app.run()

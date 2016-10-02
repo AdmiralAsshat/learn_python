@@ -9,11 +9,19 @@ class EchoHandler(asyncore.dispatcher_with_send):
         data = self.recv(8192)
         print "GOT", data
         if data:
+            bad_clients = []
             # for each connected client
-            for sock in CLIENTS:
-                sock.send(data)
-            # send them the response
-            # self.send(data)
+            for i, sock in enumerate(CLIENTS):
+                try:
+                    # send them the response
+                    sock.send(data)
+                except:
+                    print "Socket bad", sock
+                    bad_clients.append(i)
+
+            print "Removing clients", bad_clients
+            for i in bad_clients:
+                del CLIENTS[i]
 
 class EchoServer(asyncore.dispatcher):
 
